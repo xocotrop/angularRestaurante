@@ -1,3 +1,4 @@
+import { ShoppingCartSerivce } from './restaurant-detail/shopping-cart/shopping-cart.service';
 import { ROUTES } from './app.routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -39,7 +40,8 @@ import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component'
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
-    RestaurantsService
+    RestaurantsService,
+    ShoppingCartSerivce
   ],
   bootstrap: [AppComponent]
 })
