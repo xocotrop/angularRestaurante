@@ -1,8 +1,6 @@
 import { MenuItem } from './../menu-item/menu-item.model';
 import { CartItem } from './cart-item.model';
-
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/reduce';
+    
 
 export class ShoppingCartSerivce {
     items: CartItem[] = []
@@ -15,10 +13,22 @@ export class ShoppingCartSerivce {
         let foundItem = this.items.find((mItem)=> mItem.menuItem.id === item.id)
         if(foundItem){
                 // foundItem.quantity++
-                foundItem.quantity = foundItem.quantity + 1
+                this.increaseQty(foundItem)
+                //foundItem.quantity = foundItem.quantity + 1
         }
         else {
             this.items.push(new CartItem(item))
+        }
+    }
+
+    increaseQty(item: CartItem){
+        item.quantity = item.quantity + 1
+    }
+
+    decreaseQty(item: CartItem){
+        item.quantity = item.quantity - 1
+        if(item.quantity === 0){
+            this.removeItem(item)
         }
     }
 
