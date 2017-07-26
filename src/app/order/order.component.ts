@@ -4,12 +4,16 @@ import { RadioOption } from './../shared/radio/radio-option.model';
 import { Component, OnInit } from '@angular/core';
 import { Order, OrderItem } from "app/order/order.model";
 import 'rxjs/add/operator/map';
+import { Router } from "@angular/router";
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
   selector: 'mt-order',
   templateUrl: './order.component.html'
 })
 export class OrderComponent implements OnInit {
+
+  orderForm: FormGroup
 
   delivery: number = 8
 
@@ -21,9 +25,18 @@ export class OrderComponent implements OnInit {
 
   ]
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.orderForm = this.formBuilder.group({
+      name: this.formBuilder.control(''),
+      email: this.formBuilder.control(''),
+      emailConfirmation: this.formBuilder.control(''),
+      address: this.formBuilder.control(''),
+      number: this.formBuilder.control(''),
+      optionalAddress: this.formBuilder.control(''),
+      paymentOption: this.formBuilder.control('')
+    })
   }
 
   itemsValue() : number{
@@ -51,9 +64,13 @@ export class OrderComponent implements OnInit {
     order.orderItems = this.cartItems()
       .map((item:CartItem) => new OrderItem(item.quantity, item.menuItem.id))
 
-      this.orderService.checkOrder(order).subscribe((orderId: string) => {
-          console.log(`compra concluida: ${orderId}`)
-          this.orderService.clear()
+      this.orderService.checkOrder(order)
+          .subscribe((orderId: string) => {
+
+            this.router.navigate(['/order-summary'])
+
+            console.log(`compra concluida: ${orderId}`)
+            this.orderService.clear()
       })
 
     console.log(order)
