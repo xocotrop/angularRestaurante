@@ -1,15 +1,21 @@
+import { NotificationService } from './messages/notification.service';
+import { RestaurantsService } from './../restaurants/restaurants.service';
+import { OrderService } from './../order/order.service';
+import { ShoppingCartSerivce } from './../restaurant-detail/shopping-cart/shopping-cart.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RattingComponent } from './ratting/ratting.component';
 import { RadioComponent } from './radio/radio.component';
 import { InputComponent } from './input/input.component';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from "@angular/common";
+import { SnackbarComponent } from './messages/snackbar/snackbar.component';
 
 @NgModule({
     declarations : [
         InputComponent,
         RadioComponent,
-        RattingComponent
+        RattingComponent,
+        SnackbarComponent
     ],
     imports:[
         FormsModule,
@@ -22,9 +28,20 @@ import { CommonModule } from "@angular/common";
         RattingComponent,
         CommonModule, 
         FormsModule, 
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SnackbarComponent
     ]
 })
 export class SharedModule{
-
+    static forRoot(): ModuleWithProviders{
+        return {
+            ngModule : SharedModule,
+            providers : [
+                ShoppingCartSerivce,
+                OrderService,
+                RestaurantsService,
+                NotificationService
+            ]
+        }
+    }
 }
