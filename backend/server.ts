@@ -27,7 +27,7 @@ server.use(jsonServer.bodyParser)
 
 server.post('/login', handleAuthentication)
 server.use('/orders', handleAuthorization)
-server.use('/restaurants', handleAuthorization)
+//server.use('/restaurants', handleAuthorization)
 
 
 // server.use((req, res, next) => {

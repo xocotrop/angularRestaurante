@@ -19,7 +19,7 @@ server.get('/echo', function (req, res) {
 server.use(jsonServer.bodyParser);
 server.post('/login', auth_1.handleAuthentication);
 server.use('/orders', authz_1.handleAuthorization);
-server.use('/restaurants', authz_1.handleAuthorization);
+//server.use('/restaurants', handleAuthorization)
 // server.use((req, res, next) => {
 //   if (req.method === 'POST') {
 //     req.body.createdAt = Date.now()
