@@ -48,3 +48,6 @@ ng serve // Inicia o servidor para o angular
 nodemon --watch backend backend/dist/server.js // Inicia o node js como background
 
 tsc -w toda alteração feita no typescript ja compila para o json (usado bastante para o backend)
+
+ng g c 'nome' para criar o componente
+ng g c 'nome' --spec=false para criar o componente sem teste

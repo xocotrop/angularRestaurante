@@ -1,3 +1,4 @@
+import { LeaveOrderGuard } from './../order/leave-order.guard';
 import { LoggedInGuard } from './../security/loggedin.guard';
 import { LoginService } from './../security/login/login.service';
 import { NotificationService } from './messages/notification.service';
@@ -44,7 +45,8 @@ export class SharedModule{
                 RestaurantsService,
                 NotificationService,
                 LoginService,
-                LoggedInGuard
+                LoggedInGuard,
+                LeaveOrderGuard
             ]
         }
     }
