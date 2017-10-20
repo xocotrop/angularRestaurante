@@ -12,7 +12,7 @@ export class LeaveOrderGuard implements CanDeactivate<OrderComponent> {
                 return window.confirm('Deseja desistir da compra?')
             }
 
-        return false
+        return true
     }
 
 }
